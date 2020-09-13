@@ -11,8 +11,11 @@
 <body>
     <div class="app-wrap">
         <header>
-            <input class="search-box" type="text" autocomplete="off" autofocus placeholder="Enter a city..." />
-            <div class="error-message"></div>
+            <div class="search-wrapper">
+                <input class="search-box" type="text" autocomplete="off" autofocus placeholder="Enter a city..." />
+                <div class="error-message"></div>
+            </div>
+            <!-- <button onclick="searchHandler()">Search</button> -->
         </header>
         <main>
             <section class="location">
@@ -21,7 +24,9 @@
             </section>
             <section class="current-weather">
                 <div class="temp">-<span>°c</span></div>
-                <div class="weather-icon"></div>
+                <div class="weather-icon">
+                    <img src="icons/unknown.svg" />
+                </div>
                 <div class="weather">-</div>
                 <div class="hi-low">-° / -°</div>
             </section>

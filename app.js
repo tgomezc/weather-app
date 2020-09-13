@@ -19,7 +19,13 @@ function setQuery(evt) {
     }
 }
 
+function searchHandler() {
+    getWeather(searchbox.value);
+}
+
 function getWeather(city) {
+    errorMessage.style.display = 'none';
+
     fetch(`${api.baseUrl}/weather?q=${city}&units=metric&APPID=${api.key}`)
     .then(weather => {
         return weather.json();
@@ -33,6 +39,7 @@ function getWeather(city) {
 
 // Format and show the weather for the chosen city
 function displayResults(weather) {
+    console.log(weather)
     let city = document.querySelector('.location .city');
     city.innerText = `${weather.name}, ${weather.sys.country}`;
     
@@ -42,6 +49,9 @@ function displayResults(weather) {
     
     let temp = document.querySelector('.current-weather .temp');
     temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
+
+    let weatherIcon = document.querySelector('.weather-icon');
+    weatherIcon.innerHTML = `<img src="icons/${weather.weather[0].icon}.svg" />`;
     
     let weather_current = document.querySelector('.current-weather .weather');
     weather_current.innerText = `${weather.weather[0].main}`;
@@ -93,4 +103,3 @@ function getCurrentLocationWeather(lat, lng) {
         errorMessage.innerHTML = `<p>Oops, something went wrong.</p>`;
     })
 }
-
